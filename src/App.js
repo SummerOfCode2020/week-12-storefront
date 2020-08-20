@@ -1,8 +1,3 @@
-/**
-
-  Code in this file is taken directly from https://reactrouter.com/web/example/basic
- */
-
 import React from "react";
 import {
   BrowserRouter as Router,
@@ -10,6 +5,9 @@ import {
   Route,
   Link
 } from "react-router-dom";
+
+import Products from './Products'
+import Logos from './Logos'
 
 // This site has 3 pages, all of which are rendered
 // dynamically in the browser (not server rendered).
@@ -29,10 +27,10 @@ export default function BasicExample() {
             <Link to="/">Home</Link>
           </li>
           <li>
-            <Link to="/about">About</Link>
+            <Link to="/products">Products</Link>
           </li>
           <li>
-            <Link to="/dashboard">Dashboard</Link>
+            <Link to="/logos">Logos</Link>
           </li>
         </ul>
 
@@ -49,11 +47,11 @@ export default function BasicExample() {
           <Route exact path="/">
             <Home />
           </Route>
-          <Route path="/about">
-            <About />
+          <Route path="/products">
+            <Products />
           </Route>
-          <Route path="/dashboard">
-            <Dashboard />
+          <Route path="/logos">
+            <Logos />
           </Route>
         </Switch>
       </div>
@@ -68,22 +66,6 @@ function Home() {
   return (
     <div>
       <h2>Home</h2>
-    </div>
-  );
-}
-
-function About() {
-  return (
-    <div>
-      <h2>About</h2>
-    </div>
-  );
-}
-
-function Dashboard() {
-  return (
-    <div>
-      <h2>Dashboard</h2>
     </div>
   );
 }
