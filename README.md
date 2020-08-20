@@ -1,68 +1,123 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Plan for Thursday Night
 
-## Available Scripts
+- Introduction to reactstrap
+- Introduction to the React Router
+- Implement the Router to support views for your industry project API
+- Introduction to `useEffect` and loading data form a remote server API using "Ajax"
+- Go Full Stack
 
-In the project directory, you can run:
+## reactstrap for bootstrap with ease in React
 
-### `yarn start`
+A sample of form options in case you love them. Something to ignore if you don't fall in love with them.
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Router
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+Super important stuff here with Router.
 
-### `yarn test`
+This is how this folder was created:
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+`npx create-react-app week-12-storefront`
 
-### `yarn build`
+`cd week-12-storefront/`
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Once in the new project folder as created by create-react-app, we install the Router
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+`npm install --save react-router-dom`
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+For more information about how the makers of CRA recommend starting with the router see:
 
-### `yarn eject`
+<https://create-react-app.dev/docs/adding-a-router/>
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+The CRA docs link to the React Router basic example:
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+<https://reactrouter.com/web/example/basic>
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+The code shared in that example has been placed into App.js as follows:
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+```js
+import React from "react";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link
+} from "react-router-dom";
 
-## Learn More
+// This site has 3 pages, all of which are rendered
+// dynamically in the browser (not server rendered).
+//
+// Although the page does not ever refresh, notice how
+// React Router keeps the URL up to date as you navigate
+// through the site. This preserves the browser history,
+// making sure things like the back button and bookmarks
+// work properly.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+export default function BasicExample() {
+  return (
+    <Router>
+      <div>
+        <ul>
+          <li>
+            <Link to="/">Home</Link>
+          </li>
+          <li>
+            <Link to="/about">About</Link>
+          </li>
+          <li>
+            <Link to="/dashboard">Dashboard</Link>
+          </li>
+        </ul>
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+        <hr />
 
-### Code Splitting
+        {/*
+          A <Switch> looks through all its children <Route>
+          elements and renders the first one whose path
+          matches the current URL. Use a <Switch> any time
+          you have multiple routes, but you want only one
+          of them to render at a time
+        */}
+        <Switch>
+          <Route exact path="/">
+            <Home />
+          </Route>
+          <Route path="/about">
+            <About />
+          </Route>
+          <Route path="/dashboard">
+            <Dashboard />
+          </Route>
+        </Switch>
+      </div>
+    </Router>
+  );
+}
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
+// You can think of these components as "pages"
+// in your app.
 
-### Analyzing the Bundle Size
+function Home() {
+  return (
+    <div>
+      <h2>Home</h2>
+    </div>
+  );
+}
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
+function About() {
+  return (
+    <div>
+      <h2>About</h2>
+    </div>
+  );
+}
 
-### Making a Progressive Web App
+function Dashboard() {
+  return (
+    <div>
+      <h2>Dashboard</h2>
+    </div>
+  );
+}
+```
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `yarn build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
